@@ -1,0 +1,122 @@
+{
+	"pages": [{
+		"path": "pages/home/index",
+		"style": {
+			"navigationStyle": "custom" //取消导航栏
+		}
+	}, {
+		"path": "pages/home/search",
+		"style": {
+			"navigationStyle": "custom" //取消导航栏
+		}
+	}, {
+		"path": "pages/discover/index",
+		"style": {
+			"navigationBarTitleText": "发现",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/messages/index",
+		"style": {
+			"navigationBarTitleText": "消息"
+		}
+	}, {
+		"path": "pages/about/index",
+		"style": {
+			"navigationStyle": "custom" //取消导航栏
+		}
+	}, {
+		"path": "pages/messages/chat",
+		"style": {
+			"navigationBarTitleText": "@"
+		}
+	}, {
+		"path": "pages/messages/list",
+		"style": {
+			"navigationBarTitleText": "列表"
+		}
+	}, {
+		"path": "pages/discover/anchorDetail",
+		"style": {
+			"transparentTitle": "auto"
+		}
+	}, {
+		"path": "pages/about/creationCenter",
+		"style": {
+			"navigationBarTitleText": "创作中心"
+		}
+	}    ,{
+            "path" : "pages/home/videoDetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/login/index",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/login/register",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/login/forget",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/about/settingCenter",
+            "style" : {
+				"navigationBarTitleText": "设置中心"
+			}
+        }
+        ,{
+            "path" : "pages/about/videoLists",
+            "style" : {
+				"navigationBarTitleText": "加载中..",
+				"enablePullDownRefresh": true
+			}
+        }
+    ],
+	"tabBar": {
+		"color": "#4E586E",
+		"selectedColor": "#fff",
+		"backgroundColor": "#303849",
+		"borderStyle": "black",
+		"blurEffect": "light",
+		"spacing": "10px",
+		"list": [{
+				"pagePath": "pages/home/index",
+				"text": "首页",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home-select.png"
+			},
+			{
+				"pagePath": "pages/discover/index",
+				"text": "发现",
+				"iconPath": "static/discover.png",
+				"selectedIconPath": "static/discover-select.png"
+			},
+			{
+				"pagePath": "pages/messages/index",
+				"text": "消息",
+				"iconPath": "static/message.png",
+				"selectedIconPath": "static/message-select.png"
+			},
+			{
+				"pagePath": "pages/about/index",
+				"text": "我的",
+				"iconPath": "static/about.png",
+				"selectedIconPath": "static/about-select.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#242A37",
+		"backgroundColor": "#FFFFFF",
+		"app-plus": { //下拉刷新样式
+			"pullToRefresh": {
+				"color": "#007AFF",
+				"style": "circle"
+			}
+		}
+	}
+}
