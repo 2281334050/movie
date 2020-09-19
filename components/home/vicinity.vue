@@ -17,7 +17,7 @@
 			</view>
 		</view>
 		<scroll-view scroll-x="true" style="height: 170upx" class="scroll-view_H">
-			<view class="anchor-item margin-left" v-for="item in anchors" :key="item.id">
+			<view class="anchor-item margin-left" v-for="item in anchors" :key="item.id" @tap="goDetail(item.id)">
 				<view class="dashed photo round line-yellow flex justify-center align-center">
 					<view class="cu-avatar lg round" :style="`background-image: url(${item.avatar});border: 1upx solid #fff;`"></view>
 				</view>
@@ -27,7 +27,8 @@
 			</view>
 		</scroll-view>
 		<view class="padding-lr margin-top discover-box">
-			<discoverBlock class="margin-top-sm discover" :id="`discover-${item.id}`" v-for="(item,key) in dynamic" :name="item.publishNickname" :avatar="item.publishAvatar" :key="key" :list="item.images?item.images.split(','):[]"
+			<discoverBlock class="margin-top-sm discover" @goDetail="goDetail(item.publishId)" :id="`discover-${item.id}`" v-for="(item,key) in dynamic"
+			 :name="item.publishNickname" :avatar="item.publishAvatar" :key="key" btnText="关注" @handlerTap="handlerTap(item.publishId)" :list="item.images?item.images.split(','):[]"
 			 :text="item.content" :type="item.type" :date="item.publishAt"></discoverBlock>
 		</view>
 		<!-- 预约表单 -->
@@ -114,6 +115,7 @@
 
 <script>
 	import discoverBlock from '@/components/home/discover-block'
+	import {USER_FOLLOW} from '@/common/requestApi'
 	let Observer = null;
 	export default {
 		components: {
@@ -132,8 +134,13 @@
 		watch: {
 			dynamic: function(val) {
 				if (val.length) {
-					this.$nextTick(()=>{
-						Observer.relativeToViewport({top: -45,bottom:-50,left:0,right:0}).observe('.discover', (res) => {
+					this.$nextTick(() => {
+						Observer.relativeToViewport({
+							top: -45,
+							bottom: -50,
+							left: 0,
+							right: 0
+						}).observe('.discover', (res) => {
 							console.log(res);
 						})
 					})
@@ -142,7 +149,9 @@
 			}
 		},
 		created() {
-			Observer =  uni.createIntersectionObserver(this,{observeAll:true})
+			Observer = uni.createIntersectionObserver(this, {
+				observeAll: true
+			})
 		},
 		onUnload() {
 			Observer.disconnect()
@@ -191,7 +200,26 @@
 			},
 			pickChangeModel(e) {
 				this.curModel = e.detail.value
-			}
+			},
+			goDetail(id) {
+				console.log(id)
+				this.navTo('/pages/discover/anchorDetail?id=' + id)
+			},
+			handlerTap(id) { //关注
+				USER_FOLLOW({
+					anchorId: id
+				}).then(res => {
+					if (res.status) {
+						
+					} else {
+						uni.showToast({
+							title: res.msg,
+							icon: 'none',
+							mask: true
+						})
+					}
+				})
+			},
 		},
 		computed: {
 			dates() {

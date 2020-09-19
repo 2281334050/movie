@@ -125,11 +125,19 @@ var tools = {
 	},
 	checkPower:function(backtype){ //检查是否登录
 		let token = uni.getStorageSync('token')
-		// console.log(token)
+		 console.log(token)
 		if (!token) {
+			let url = ''
 			let pages = getCurrentPages();
 			let page = pages[pages.length - 1];
-			let url = page.$route.fullPath;
+			//#ifdef APP-PLUS
+				url = page.$getAppWebview().__uniapp_route
+				console.log()
+			//#endif
+			//#ifdef H5
+				 url = page.$route.fullPath;
+			//#endif
+			console.log(url)
 			uni.reLaunch({
 				url: '/pages/login/index?backPage=' + url + '&backType=' + backtype
 			});

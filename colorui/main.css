@@ -11,9 +11,9 @@
         初始化
  ==================== */
 body {
-	background-color: #FFFFFF;
+	background-color: #242A37;
 	font-size: 28upx;
-	color: #333333;
+	color: #fff;
 	font-family: Helvetica Neue, Helvetica, sans-serif;
 }
 
@@ -3580,6 +3580,10 @@ scroll-view.cu-steps .cu-item {
 
 .bg-red {
 	background-color: #e54d42;
+	color: #ffffff;
+}
+.bg-header {
+	background-color: #242A37;
 	color: #ffffff;
 }
 

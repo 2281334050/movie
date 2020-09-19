@@ -33,11 +33,6 @@
 	/*每个页面公共css */
 	@import "colorui/main.css";
 	@import "colorui/icon.css";
-
-	page {
-		background-color: #242A37;
-		color: #fff;
-	}
 	/* #endif */
 	/* #ifdef H5 */
 	.uni-picker-container{

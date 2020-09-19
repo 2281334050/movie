@@ -1,11 +1,11 @@
 <template>
 	<view class="video-item radius">
-		<view class="img">
+		<view class="img" @tap="$emit('videoTap')">
 			<image :src="cover" mode="aspectFill"></image>
 			<text v-if="time" class="timer radius text-sm">{{timerTips}}</text>
 		</view>
-		<view class="detail flex padding-lr-xs align-center">
-			<view class="cu-avatar round" :style="`background-image: url('${author}');`">
+		<view class="detail flex padding-lr-xs align-center" @tap="$emit('authorTap')">
+			<view v-if="author" class="cu-avatar round" :style="`background-image: url('${author}');`">
 			</view>
 			<view class="flex flex-direction content margin-left-xs">
 				<view class="title text-cut text-sm">
@@ -35,15 +35,21 @@
 			},
 			author: {
 				type: String,
-				default: "https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg"
+				default: ""
 			},
 			name: {
 				type: String,
-				default: '视频名称视频名称视频名称视频名称视频名称'
+				default: ''
 			},
 			icon: { //第一个是点赞人数，第二个解锁人数
 				type: Array,
 				default: () => []
+			},
+			videoTap:{
+				type:Function
+			},
+			authorTap:{
+				type:Function
 			}
 		},
 		data() {

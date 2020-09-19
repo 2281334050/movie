@@ -51,15 +51,21 @@
         }
         ,{
             "path" : "pages/login/index",
-            "style" : {}
+            "style" : {
+				"navigationStyle": "custom" //取消导航栏
+			}
         }
         ,{
             "path" : "pages/login/register",
-            "style" : {}
+            "style" : {
+				"navigationStyle": "custom" //取消导航栏
+			}
         }
         ,{
             "path" : "pages/login/forget",
-            "style" : {}
+            "style" : {
+				"navigationStyle": "custom" //取消导航栏
+			}
         }
         ,{
             "path" : "pages/about/settingCenter",
@@ -111,7 +117,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarBackgroundColor": "#242A37",
-		"backgroundColor": "#FFFFFF",
+		"backgroundColor": "#242A37",
 		"app-plus": { //下拉刷新样式
 			"pullToRefresh": {
 				"color": "#007AFF",
