@@ -14,4 +14,7 @@ export default {
 	USER_ANCHORINFO: '/user/anchorInfo', //主播详情
 	USER_GETANCHORMEDIALIST: '/user/getAnchorMediaList', //主播媒体详情
 	USER_GETMEDIADETAIL: '/user/getMediaDetail', //视频详情
+	USER_UNLOCKMEDIA: '/user/unlockMedia', //视频解锁
+	USER_FAVORITES: '/user/favorites', //视频收藏
+	USER_LIKE: '/user/like', //视频赞、踩
 }

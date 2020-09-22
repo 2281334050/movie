@@ -10,7 +10,7 @@ function LOGIN(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -24,7 +24,7 @@ function REGISTER(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -39,7 +39,7 @@ function USER_DETAIL(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -53,7 +53,7 @@ function MEDIA_BANNER(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -67,7 +67,7 @@ function MEDIA_GETINDEXVIDEO(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -81,7 +81,7 @@ function MEDIA_GETINDEXANCHOR(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -95,7 +95,7 @@ function MEDIA_NAEARBYACTIVITY(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -109,7 +109,7 @@ function USER_UNLOCKMEDIALIST(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -123,7 +123,7 @@ function USER_FAVORITESMEDIALIST(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -137,7 +137,7 @@ function USER_LIKEMEDIALIST(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -151,7 +151,7 @@ function USER_FOLLOW(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -165,7 +165,7 @@ function USER_ANCHORINFO(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -179,7 +179,7 @@ function USER_GETANCHORMEDIALIST(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -193,7 +193,49 @@ function USER_GETMEDIADETAIL(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.message
+			data.msg = res.msg
+		}
+		return data
+	})
+}
+// 媒体解锁
+function USER_UNLOCKMEDIA(params = {}) {
+	return request(api_list.USER_UNLOCKMEDIA, params, 'POST').then(res => {
+		var data = {}
+		if (res.code === 0) {
+			data.status = 1
+			data.data = res.data
+		} else {
+			data.status = 0
+			data.msg = res.msg
+		}
+		return data
+	})
+}
+// 媒体收藏
+function USER_FAVORITES(params = {}) {
+	return request(api_list.USER_FAVORITES, params, 'POST').then(res => {
+		var data = {}
+		if (res.code === 0) {
+			data.status = 1
+			data.data = res.data
+		} else {
+			data.status = 0
+			data.msg = res.msg
+		}
+		return data
+	})
+}
+// 媒体赞，踩
+function USER_LIKE(params = {}) {
+	return request(api_list.USER_LIKE, params, 'POST').then(res => {
+		var data = {}
+		if (res.code === 0) {
+			data.status = 1
+			data.data = res.data
+		} else {
+			data.status = 0
+			data.msg = res.msg
 		}
 		return data
 	})
@@ -239,5 +281,8 @@ export {
 	USER_FOLLOW,
 	USER_ANCHORINFO,
 	USER_GETANCHORMEDIALIST,
-	USER_GETMEDIADETAIL
+	USER_GETMEDIADETAIL,
+	USER_UNLOCKMEDIA,
+	USER_FAVORITES,
+	USER_LIKE
 }

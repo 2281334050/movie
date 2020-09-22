@@ -38,7 +38,7 @@
 		</view>
 		<view class="padding-lr-sm videos flex flex-wrap">
 			<block v-for="(item,key) in youlike">
-				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs margin-top-xs" v-if="key<=3" :key="key"  :icon="[66,item.views]" :cover="item.coverUri" :time="60000" :name="item.videoTitle" :author="item.publishAvatar"></videoItem>
+				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs margin-top-xs" v-if="key<=3" :key="key"  :icon="[item.likes,item.views]" :cover="item.coverUri" :time="item.duration" :name="item.videoTitle" :author="item.publishAvatar"></videoItem>
 			</block>
 		</view>
 		<!-- 轮播 -->
@@ -53,7 +53,7 @@
 		<view class="swiper-box margin-lr">
 			<swiper class="screen-swiper square-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000"
 			 duration="500" style="height: 280upx;">
-				<swiper-item v-for="(item,index) in hot" :key="index">
+				<swiper-item v-for="(item,index) in hot" :key="index" @tap="goDetail(item,0)">
 					<image :src="item.coverUri" mode="aspectFill"></image>
 <!-- 					<image :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
 					<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video> -->
@@ -71,7 +71,7 @@
 		</view>
 		<view class="padding-lr-sm">
 			<scroll-view class="scroll-view_H videos" scroll-x="true" style="height: 330upx">
-				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs" style="display: inline-block;" v-for="(item,key) in featured" :key="key"  :icon="[66,item.views]"  :cover="item.coverUri" :time="60000" :author="item.publishAvatar" :name="item.videoTitle"></videoItem>
+				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs" style="display: inline-block;" v-for="(item,key) in featured" :key="key"  :icon="[item.likes,item.views]"  :cover="item.coverUri" :time="item.duration" :author="item.publishAvatar" :name="item.videoTitle"></videoItem>
 			</scroll-view>
 		</view>
 		<!-- 新近主播 -->

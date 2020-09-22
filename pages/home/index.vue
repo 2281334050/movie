@@ -269,6 +269,7 @@
 		},
 		created() {
 			this.getPageData()
+			console.log()
 		},
 		onReachBottom() { //触底加载更多
 			switch (this.TabCur) {

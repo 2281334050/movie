@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="video-box">
-			<video class="video fixed" :src="videoDetail.previewUri" controls :style="{top:CustomBar+'px'}"></video>
+			<video class="video fixed" :poster="videoDetail.coverUri" :src="videoDetail.previewUri" controls :style="style"></video>
 		</view>
 		<view class="video-detail">
 			<view class="cu-bar text-gray">
@@ -23,16 +23,16 @@
 					<view class="flex flex-direction text-center">
 						<text v-if="!videoDetail.currentIsFavorites" class="cuIcon-like" style="font-size: 20px;"></text>
 						<text v-else class="cuIcon-likefill text-red" style="font-size: 20px;"></text>
-						<text class="text-sm">喜欢</text>
+						<text @tap="addFavorites" class="text-sm">喜欢</text>
 					</view>
 					<view class="flex flex-direction text-center margin-left">
 						<text v-if="!videoDetail.currentIsLike" class="cuIcon-appreciate" style="font-size: 20px;"></text>
 						<text v-else class="cuIcon-appreciatefill text-red" style="font-size: 20px;"></text>
-						<text class="text-sm">点赞</text>
+						<text @tap="addLike" class="text-sm">点赞</text>
 					</view>
 				</view>
 				<view v-if="!videoDetail.currentIsUnlock" class="action">
-					<button class="cu-btn line-yellow">立即加入观看</button>
+					<button @tap="unLock" class="cu-btn line-yellow">立即加入观看</button>
 				</view>
 			</view>
 		</view>
@@ -48,7 +48,7 @@
 				</view>
 				<view class="action">
 					<button v-if="!authorDetail.isFollow" @tap="follow" class="cu-btn line-yellow">关注</button>
-					<button v-else disabled  class="cu-btn">已关注</button>
+					<button v-else disabled class="cu-btn">已关注</button>
 					<!-- <button class="cu-btn line-yellow margin-left-sm">私信</button> -->
 				</view>
 			</view>
@@ -61,11 +61,13 @@
 				</view>
 			</scroll-view>
 			<view v-show="TabCur===0" class="list">
-				<videoItem v-for="item in Tabs[TabCur].data" @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" :cover="item.coverUri" :author="item.publishAvatar" :authorName="item.publishNickname" :name="item.videoTitle" :icon="[item.unlocks,item.views,item.likes]"></videoItem>
+				<videoItem v-for="item in Tabs[TabCur].data" @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" :cover="item.coverUri"
+				 :author="item.publishAvatar" :authorName="item.publishNickname" :name="item.videoTitle" :icon="[item.unlocks,item.views,item.likes]"></videoItem>
 				<view :class="['cu-load bg-header',Tabs[TabCur].hasMore ?'loading':'over']"></view>
 			</view>
 			<view v-show="TabCur===1" class="list">
-				<videoItem v-for="item in Tabs[TabCur].data" @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" :cover="item.coverUri" :author="item.publishAvatar" :authorName="item.publishNickname" :name="item.videoTitle" :icon="[item.unlocks,item.views,item.likes]"></videoItem>
+				<videoItem v-for="item in Tabs[TabCur].data" @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" :cover="item.coverUri"
+				 :author="item.publishAvatar" :authorName="item.publishNickname" :name="item.videoTitle" :icon="[item.unlocks,item.views,item.likes]"></videoItem>
 				<view :class="['cu-load bg-header',Tabs[TabCur].hasMore ? 'loading':'over']"></view>
 			</view>
 		</view>
@@ -78,7 +80,10 @@
 		USER_GETANCHORMEDIALIST,
 		USER_ANCHORINFO,
 		MEDIA_GETINDEXVIDEO,
-		USER_FOLLOW
+		USER_FOLLOW,
+		USER_UNLOCKMEDIA,
+		USER_FAVORITES,
+		USER_LIKE
 	} from "@/common/requestApi"
 	import videoItem from "@/components/about/video-item"
 	export default {
@@ -117,7 +122,10 @@
 				}
 			},
 			getDetail() {
-				uni.showLoading({title:'加载中...',mask:true})
+				uni.showLoading({
+					title: '加载中...',
+					mask: true
+				})
 				USER_GETMEDIADETAIL({
 					id: this.id,
 					mediaType: 1
@@ -149,7 +157,10 @@
 						this.fun = USER_GETANCHORMEDIALIST
 						break;
 				}
-				uni.showLoading({title:'加载中...',mask:true})
+				uni.showLoading({
+					title: '加载中...',
+					mask: true
+				})
 				this.fun({
 					anchorId: this.uid,
 					mediaType: 1,
@@ -162,17 +173,20 @@
 							this.Tabs[this.TabCur].hasMore = false
 						}
 						this.Tabs[this.TabCur].data = this.Tabs[this.TabCur].data.concat(res.data)
-					}else{
+					} else {
 						uni.showToast({
-							title:res.msg,
-							mask:true,
-							icon:'none'
+							title: res.msg,
+							mask: true,
+							icon: 'none'
 						})
 					}
 				})
 			},
 			getAuthorDetail() {
-				uni.showLoading({title:'加载中...',mask:true})
+				uni.showLoading({
+					title: '加载中...',
+					mask: true
+				})
 				USER_ANCHORINFO({
 					anchorId: this.uid
 				}).then(res => {
@@ -195,27 +209,99 @@
 					this.navTo(`/pages/discover/anchorDetail?id=${item.publishId}`)
 				}
 			},
-			follow(){
-				uni.showLoading({title:'加载中...',mask:true})
-				USER_FOLLOW({anchorId:this.uid}).then(res=>{
-					if(res.status){
+			follow() {
+				uni.showLoading({
+					title: '加载中...',
+					mask: true
+				})
+				USER_FOLLOW({
+					anchorId: this.uid
+				}).then(res => {
+					if (res.status) {
 						uni.hideLoading()
 						uni.showToast({
-							title:'关注成功',
-							mask:true,
-							icon:'success',
+							title: '关注成功',
+							mask: true,
+							icon: 'success',
 							success: () => {
 								this.authorDetail.isFollow = true
 							}
 						})
-					}else{
+					} else {
 						uni.showToast({
-							title:res.msg,
-							mask:true,
-							icon:'none'
+							title: res.msg,
+							mask: true,
+							icon: 'none'
 						})
 					}
 				})
+			},
+			addFavorites() {
+				uni.showLoading()
+				USER_FAVORITES({
+					mediaType: 1,
+					mediaId: this.id
+				}).then(res => {
+					uni.hideLoading()
+					if (res.status) {
+						this.videoDetail.currentIsFavorites = true
+					} else {
+						uni.showToast({
+							title: res.msg,
+							mask: true,
+							icon: 'none'
+						})
+					}
+				})
+			},
+			addLike() {
+				uni.showLoading()
+				USER_LIKE({
+					mediaType: 1,
+					mediaId: this.id,
+					type: 1
+				}).then(res => {
+					uni.hideLoading()
+					if (res.status) {
+						this.videoDetail.currentIsLike = true
+					} else {
+						uni.showToast({
+							title: res.msg,
+							mask: true,
+							icon: 'none'
+						})
+					}
+				})
+			},
+			unLock() {
+				uni.showModal({
+					title: '视频解锁',
+					content: '您将以1800钻石的价格解锁该视频，是否确认？',
+					success: function(res) {
+						if (res.confirm) {
+							uni.showLoading()
+							USER_UNLOCKMEDIA({
+								mediaType: 1,
+								mediaId: this.id
+							}).then(res => {
+								uni.hideLoading()
+								if (res.status) {
+									this.videoDetail.currentIsUnlock = true
+								} else {
+									uni.showToast({
+										title: res.msg,
+										mask: true,
+										icon: 'none'
+									})
+								}
+							})
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+
+				})
+
 			}
 		},
 		async onPullDownRefresh() {
@@ -242,9 +328,17 @@
 				this.getData()
 				this.getAuthorDetail()
 			}
+			console.log(this.CustomBar)
 		},
 		computed: {
-
+			style() {
+				//#ifdef APP-PLUS
+				return `top:0`;
+				// #endif
+				//#ifdef H5
+				return `top:${this.CustomBar}px`;
+				// #endif
+			}
 		}
 	}
 </script>
@@ -253,6 +347,10 @@
 	.fixed {
 		position: fixed;
 		z-index: 996;
+	}
+
+	uni-modal .uni-modal {
+		color: #000 !important;
 	}
 
 	.video-box {
