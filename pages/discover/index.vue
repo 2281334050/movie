@@ -78,22 +78,32 @@
 				}
 			},
 			getData() {
+				uni.showLoading({title:'加载中...',mask:true})
 				MEDIA_NAEARBYACTIVITY({
 					pageNo: this.Tabs[this.TabCur].page,
 					type: this.TabCur ? 3 : 2
 				}).then(res => {
+					uni.hideLoading()
 					if (res.status) {
 						if (res.data.length < 20) {
 							this.Tabs[this.TabCur].hasMore = false
 						}
 						this.Tabs[this.TabCur].data = this.Tabs[this.TabCur].data.concat(res.data)
+					}else{
+						uni.showToast({
+							title:res.msg,
+							mask:true,
+							icon:'none'
+						})
 					}
 				})
 			},
 			handlerTap(id) { //关注
+			uni.showLoading({title:'加载中...',mask:true})
 				USER_FOLLOW({
 					anchorId: id
 				}).then(res => {
+					uni.hideLoading()
 					if (res.status) {
 						
 					} else {

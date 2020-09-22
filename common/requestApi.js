@@ -10,7 +10,7 @@ function LOGIN(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -24,7 +24,7 @@ function REGISTER(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -32,13 +32,14 @@ function REGISTER(params = {}) {
 //用户信息
 function USER_DETAIL(params = {}) {
 	return request(api_list.USER_DETAIL, params, 'GET').then(res => {
+		console.log(res)
 		var data = {}
 		if (res.code === 0) {
 			data.status = 1
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -52,7 +53,7 @@ function MEDIA_BANNER(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -66,7 +67,7 @@ function MEDIA_GETINDEXVIDEO(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -80,7 +81,7 @@ function MEDIA_GETINDEXANCHOR(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -94,7 +95,7 @@ function MEDIA_NAEARBYACTIVITY(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -108,7 +109,7 @@ function USER_UNLOCKMEDIALIST(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -122,7 +123,7 @@ function USER_FAVORITESMEDIALIST(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -136,7 +137,7 @@ function USER_LIKEMEDIALIST(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -150,7 +151,7 @@ function USER_FOLLOW(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -164,7 +165,7 @@ function USER_ANCHORINFO(params = {}) {
 			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
@@ -178,21 +179,21 @@ function USER_GETANCHORMEDIALIST(params = {}) {
 			data.data = res.data.list
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})
 }
-// 主播媒体详情
+// 媒体详情
 function USER_GETMEDIADETAIL(params = {}) {
 	return request(api_list.USER_GETMEDIADETAIL, params, 'POST').then(res => {
 		var data = {}
 		if (res.code === 0) {
 			data.status = 1
-			data.data = res.data.list
+			data.data = res.data
 		} else {
 			data.status = 0
-			data.msg = res.msg
+			data.msg = res.message
 		}
 		return data
 	})

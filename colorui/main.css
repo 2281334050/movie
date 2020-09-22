@@ -1096,6 +1096,7 @@ button.cuIcon.lg {
 
 .cu-load {
 	display: block;
+	line-height: 3em;
 	text-align: center;
 }
 

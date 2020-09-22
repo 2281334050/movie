@@ -23,11 +23,6 @@ function requestTask(url, data, method) {
 				uni.reLaunch({
 					url: '/pages/login/index'
 				})
-				uni.showToast({
-					title: '重新登录',
-					icon: 'none',
-					mask: true
-				})
 				return {
 					status: 0,
 					message: res.data.message

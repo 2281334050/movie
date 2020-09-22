@@ -24,6 +24,7 @@ const store = new Vuex.Store({
 				if (res.status) {
 					commit("setUserInfo", res.data)
 				} else {
+					console.log(res)
 					uni.showToast({
 						title: res.msg,
 						icon: "none"

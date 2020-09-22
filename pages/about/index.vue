@@ -40,7 +40,7 @@
 			<view class="left solid-right flex align-center">
 				<img src="../../static/diamond.png" class="margin-left padding-left" alt="">
 				<view class="text-center margin-left">
-					<view class="text-xxl text-bold">2000</view>
+					<view class="text-xxl text-bold">{{$store.state.UserInfo.balance?$store.state.UserInfo.balance:0}}</view>
 					<view class="text-bold">钻石余额</view>
 				</view>
 			</view>

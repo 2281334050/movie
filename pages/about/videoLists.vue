@@ -27,15 +27,23 @@
 		},
 		methods: {
 			getData() {
+				uni.showLoading({title:'加载中...',mask:true})
 				this.Datafun({
 					mediaType: 1,
 					pageNo: this.page
 				}).then(res => {
+					uni.hideLoading()
 					if (res.status) {
 						if (res.data.length < 20) {
 							this.hasMore = false
 						}
 						this.list = this.list.concat(res.data)
+					}else{
+						uni.showToast({
+							title:res.msg,
+							mask:true,
+							icon:'none'
+						})
 					}
 				})
 			}

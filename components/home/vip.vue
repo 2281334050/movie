@@ -4,9 +4,9 @@
 		<view class="top-banner">
 			<view class="bg-mask bg-img">
 				<swiper class="screen-swiper" :circular="true" :autoplay="true" interval="5000" duration="500" style="height: 450upx;">
-					<swiper-item v-for="(item,index) in swiperList" :key="index">
-						<image :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
-						<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
+					<swiper-item v-for="(item,index) in banner" :key="index">
+						<image :src="item.image" mode="aspectFill" ></image>
+						<!-- <video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video> -->
 					</swiper-item>
 				</swiper>
 			</view>

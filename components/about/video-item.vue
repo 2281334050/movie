@@ -1,13 +1,13 @@
 <template>
 	<view class="video-item flex padding-sm solid-top">
 		<view class="img radius">
-			<image :src="cover" mode=""></image>
+			<image :src="cover" mode="" @tap="$emit('videoTap')"></image>
 		</view>
 		<view class="margin-left-sm detail">
 			<view class="title">
 				{{name}}
 			</view>
-			<view class="anchor margin-top-sm">
+			<view class="anchor margin-top-sm" @tap="$emit('authorTap')">
 				<view class="cu-avatar round sm" :style="`background-image:url(${author}); border:1upx solid #fff;`"></view>
 				<text class="text-gray margin-left-sm">{{authorName}}</text>
 			</view>
@@ -50,6 +50,12 @@
 			icon: { //第一个是点赞人数，第二个解锁人数
 				type: Array,
 				default: () => []
+			},
+			authorTap:{
+				type:Function
+			},
+			videoTap:{
+				type:Function
 			}
 		}
 	}

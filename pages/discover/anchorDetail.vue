@@ -127,24 +127,34 @@
 				this.getData()
 			},
 			getData() {
+				uni.showLoading({title:'加载中...',mask:true})
 				USER_GETANCHORMEDIALIST({
 					anchorId: this.id,
 					pageNo: this.Tabs[this.TabCur].page,
 					mediaType: this.TabCur ? 1 : 2
 				}).then(res => {
+					uni.hideLoading()
 					if (res.status) {
 						console.log(res.data)
 						if (res.data.length < 20) {
 							this.Tabs[this.TabCur].hasMore = false
 						}
 						this.Tabs[this.TabCur].data = this.Tabs[this.TabCur].data.concat(res.data)
+					}else{
+						uni.showToast({
+							title:res.msg,
+							mask:true,
+							icon:'none'
+						})
 					}
 				})
 			},
 			getDetail() {
+				uni.showLoading({title:'加载中...',mask:true})
 				USER_ANCHORINFO({
 					anchorId: this.id
 				}).then(res => {
+					uni.hideLoading()
 					if (res.status) {
 						this.detail = res.data
 						uni.setNavigationBarTitle({
@@ -160,9 +170,11 @@
 				})
 			},
 			toFollow() {
+				uni.showLoading({title:'加载中...',mask:true})
 				USER_FOLLOW({
 					anchorId: this.id
 				}).then(res => {
+					uni.hideLoading()
 					if (res.status) {
 
 					} else {

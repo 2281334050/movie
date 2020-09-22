@@ -13,7 +13,7 @@
 
 		<view class="content padding-bottom-sm">
 			<Vip v-show="TabCur === 0" :videos="vipData.videos" :banner="vipData.banner"></Vip>
-			<Recommend v-show="TabCur === 1" :youlike="homeData.youlike" :hot="homeData.hot" :featured="homeData.featured"
+			<Recommend v-show="TabCur === 1"  :youlike="homeData.youlike" :hot="homeData.hot" :featured="homeData.featured"
 			 :anchors="homeData.anchors" :banner="homeData.banner"></Recommend>
 			<Free v-show="TabCur === 2" :videos="freeData.videos" :banner="freeData.banner"></Free>
 			<Vicinity v-show="TabCur === 3" :dynamic="vicinityData.dynamic" :anchors="vicinityData.anchors"></Vicinity>
@@ -101,10 +101,12 @@
 			getPageData() {
 				switch (this.TabCur) {
 					case 0:
+					uni.showLoading({title:'加载中...',mask:true})
 						MEDIA_GETINDEXVIDEO({
 							pageNo: this.vipData.page,
 							type: 4
 						}).then(res => {
+							uni.hideLoading()
 							if (res.status) {
 								if (res.data.length < this.vipData.limit) {
 									this.vipData.hasMore = false
@@ -112,47 +114,81 @@
 								if (res.data.length) {
 									this.vipData.videos = this.vipData.videos.concat(res.data)
 								}
+							}else{
+								uni.showToast({
+									title:res.msg,
+									mask:true,
+									icon:'none'
+								})
 							}
 						})
 						if (this.vipData.page === 1) {
+							uni.showLoading({title:'加载中...',mask:true})
 							MEDIA_BANNER({
 								type: 3
 							}).then(res => {
+								uni.hideLoading()
 								if (res.status) {
 									this.vipData.banner = res.data
+								}else{
+									uni.showToast({
+										title:res.msg,
+										mask:true,
+										icon:'none'
+									})
 								}
 							})
 						}
 						break;
 					case 1: //首页
 						// 获取所有视频类别
+						uni.showLoading({title:'加载中...',mask:true})
 						HOME_VIDEOS().then(res => {
+							uni.hideLoading()
 							this.homeData.youlike = res.youlike
 							this.homeData.hot = res.hot
 							this.homeData.featured = res.featured
 						})
 						//新晋主播
+						uni.showLoading({title:'加载中...',mask:true})
 						MEDIA_GETINDEXANCHOR({
 							pageNo: 1,
 							type: 1
 						}).then(res => {
+							uni.hideLoading()
 							if (res.status) {
 								this.homeData.anchors = res.data
+							}else{
+								uni.showToast({
+									title:res.msg,
+									mask:true,
+									icon:'none'
+								})
 							}
 						})
+						uni.showLoading({title:'加载中...',mask:true})
 						MEDIA_BANNER({
 							type: 1
 						}).then(res => {
+							uni.hideLoading()
 							if (res.status) {
 								this.homeData.banner = res.data
+							}else{
+								uni.showToast({
+									title:res.msg,
+									mask:true,
+									icon:'none'
+								})
 							}
 						})
 						break;
 					case 2:
+					uni.showLoading({title:'加载中...',mask:true})
 						MEDIA_GETINDEXVIDEO({
 							pageNo: this.freeData.page,
 							type: 3
 						}).then(res => {
+							uni.hideLoading()
 							if (res.status) {
 								if (res.data.length < this.freeData.limit) {
 									this.freeData.hasMore = false
@@ -160,23 +196,39 @@
 								if (res.data.length) {
 									this.freeData.videos = this.freeData.videos.concat(res.data)
 								}
+							}else{
+								uni.showToast({
+									title:res.msg,
+									mask:true,
+									icon:'none'
+								})
 							}
 						})
 						if (this.freeData.page === 1) {
+							uni.showLoading({title:'加载中...',mask:true})
 							MEDIA_BANNER({
 								type: 2
 							}).then(res => {
+								uni.hideLoading()
 								if (res.status) {
 									this.freeData.banner = res.data
+								}else{
+									uni.showToast({
+										title:res.msg,
+										mask:true,
+										icon:'none'
+									})
 								}
 							})
 						}
 						break;
 					case 3:
+					uni.showLoading({title:'加载中...',mask:true})
 						MEDIA_NAEARBYACTIVITY({
 							pageNo: this.vicinityData.page,
 							type:1
 						}).then(res => {
+							uni.hideLoading()
 							if (res.status) {
 								if (res.data.length < this.vicinityData.limit) {
 									this.vicinityData.hasMore = false
@@ -184,15 +236,28 @@
 								if (res.data.length) {
 									this.vicinityData.dynamic = this.vicinityData.dynamic.concat(res.data)
 								}
+							}else{
+								uni.showToast({
+									title:res.msg,
+									mask:true,
+									icon:'none'
+								})
 							}
 						})
 						if (this.vicinityData.page === 1) {
+							uni.showLoading({title:'加载中...',mask:true})
 							MEDIA_GETINDEXANCHOR({
 								pageNo: 1,
 								type: 2
 							}).then(res => {
 								if (res.status) {
 									this.vicinityData.anchors = res.data
+								}else{
+									uni.showToast({
+										title:res.msg,
+										mask:true,
+										icon:'none'
+									})
 								}
 							})
 						}

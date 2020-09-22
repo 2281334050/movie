@@ -45,42 +45,39 @@
 		"style": {
 			"navigationBarTitleText": "创作中心"
 		}
-	}    ,{
-            "path" : "pages/home/videoDetail",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/login/index",
-            "style" : {
-				"navigationStyle": "custom" //取消导航栏
-			}
-        }
-        ,{
-            "path" : "pages/login/register",
-            "style" : {
-				"navigationStyle": "custom" //取消导航栏
-			}
-        }
-        ,{
-            "path" : "pages/login/forget",
-            "style" : {
-				"navigationStyle": "custom" //取消导航栏
-			}
-        }
-        ,{
-            "path" : "pages/about/settingCenter",
-            "style" : {
-				"navigationBarTitleText": "设置中心"
-			}
-        }
-        ,{
-            "path" : "pages/about/videoLists",
-            "style" : {
-				"navigationBarTitleText": "加载中..",
-				"enablePullDownRefresh": true
-			}
-        }
-    ],
+	}, {
+		"path": "pages/home/videoDetail",
+		"style": {
+			"navigationBarTitleText": "加载中..",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/login/index",
+		"style": {
+			"navigationStyle": "custom" //取消导航栏
+		}
+	}, {
+		"path": "pages/login/register",
+		"style": {
+			"navigationStyle": "custom" //取消导航栏
+		}
+	}, {
+		"path": "pages/login/forget",
+		"style": {
+			"navigationStyle": "custom" //取消导航栏
+		}
+	}, {
+		"path": "pages/about/settingCenter",
+		"style": {
+			"navigationBarTitleText": "设置中心"
+		}
+	}, {
+		"path": "pages/about/videoLists",
+		"style": {
+			"navigationBarTitleText": "加载中..",
+			"enablePullDownRefresh": true
+		}
+	}],
 	"tabBar": {
 		"color": "#4E586E",
 		"selectedColor": "#fff",

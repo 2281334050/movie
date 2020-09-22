@@ -1,14 +1,14 @@
 <template>
 	<view>
 		<!-- 限时免费 -->
-		<view class="cu-bar search xl">
+<!-- 		<view class="cu-bar search xl">
 			<view class="search-form round">
 				<text class="cuIcon-search" style="font-size: 32upx"></text>
 				<input type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
 			</view>
-		</view>
+		</view> -->
 		<!-- links -->
-		<view class="links cu-bar">
+<!-- 		<view class="links cu-bar">
 			<view class="btn margin-left">高颜值</view>
 			<view class="btn">新主播</view>
 			<view class="btn">长视频</view>
@@ -16,14 +16,14 @@
 			<view class="action">
 				<view class="cu-tag radius sm bg-yellow">更多</view>
 			</view>
-		</view>
+		</view> -->
 		<!-- 轮播 -->
-		<view class="swiper-box margin-lr">
+		<view class="swiper-box margin-lr margin-top-sm">
 			<swiper class="screen-swiper square-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000"
-			 duration="500" style="height: 280upx;">
-				<swiper-item v-for="(item,index) in swiperList" :key="index">
-					<image :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
-					<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
+			 duration="500" style="height: 360upx;">
+				<swiper-item v-for="(item,index) in banner" :key="index">
+					<image :src="item.image" mode="aspectFill" ></image>
+					<!-- <video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video> -->
 				</swiper-item>
 			</swiper>
 		</view>
