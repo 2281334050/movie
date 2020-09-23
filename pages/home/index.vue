@@ -13,7 +13,7 @@
 
 		<view class="content padding-bottom-sm">
 			<Vip v-show="TabCur === 0" :videos="vipData.videos" :banner="vipData.banner"></Vip>
-			<Recommend v-show="TabCur === 1"  :youlike="homeData.youlike" :hot="homeData.hot" :featured="homeData.featured"
+			<Recommend v-show="TabCur === 1" :youlike="homeData.youlike" :hot="homeData.hot" :featured="homeData.featured"
 			 :anchors="homeData.anchors" :banner="homeData.banner"></Recommend>
 			<Free v-show="TabCur === 2" :videos="freeData.videos" :banner="freeData.banner"></Free>
 			<Vicinity v-show="TabCur === 3" :dynamic="vicinityData.dynamic" :anchors="vicinityData.anchors"></Vicinity>

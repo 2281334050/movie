@@ -32,12 +32,12 @@
 			<view class="action">
 				<text>猜你喜欢</text>
 			</view>
-			<view class="action">
+			<view class="action" @tap="changeYoulike">
 				<view class="cu-tag radius sm bg-yellow">换一批</view>
 			</view>
 		</view>
 		<view class="padding-lr-sm videos flex flex-wrap">
-			<block v-for="(item,key) in youlike">
+			<block v-for="(item,key) in youLike">
 				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs margin-top-xs" v-if="key<=3" :key="key"  :icon="[item.likes,item.views]" :cover="item.coverUri" :time="item.duration" :name="item.videoTitle" :author="item.publishAvatar"></videoItem>
 			</block>
 		</view>
@@ -46,7 +46,7 @@
 			<view class="action">
 				<text>热门解锁</text>
 			</view>
-			<view class="action">
+			<view class="action" @tap="navTo('/pages/about/videoLists?type=3')">
 				<view class="cu-tag radius sm bg-yellow">更多</view>
 			</view>
 		</view>
@@ -65,7 +65,7 @@
 			<view class="action">
 				<text>官方精选</text>
 			</view>
-			<view class="action">
+			<view class="action" @tap="navTo('/pages/about/videoLists?type=4')">
 				<view class="cu-tag radius sm bg-yellow">更多</view>
 			</view>
 		</view>
@@ -93,6 +93,9 @@
 
 <script>
 	import videoItem from "@/components/home/video-block.vue"
+	import {
+		MEDIA_GETINDEXVIDEO
+	} from "@/common/requestApi"
 	export default {
 		components: {
 			videoItem
@@ -121,35 +124,7 @@
 		},
 		data() {
 			return {
-				swiperList: [{
-					id: 0,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-				}, {
-					id: 1,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg',
-				}, {
-					id: 2,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-				}, {
-					id: 3,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-				}, {
-					id: 4,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-				}, {
-					id: 5,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-				}, {
-					id: 6,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-				}]
+				youLike:[]
 			};
 		},
 		methods:{
@@ -162,6 +137,26 @@
 				}else if(type === 2){//作者详情跳转
 					this.navTo(`/pages/discover/anchorDetail?id=${item.id}`)
 				}
+			},
+			changeYoulike(){
+				uni.showLoading()
+				MEDIA_GETINDEXVIDEO({pageNo:1,type:0}).then(res=>{
+					uni.hideLoading()
+					if(res.status){
+						this.youLike = res.data
+					}else{
+						uni.showToast({
+							title:res.msg,
+							mask:true,
+							icon:'none'
+						})
+					}
+				})
+			}
+		},
+		watch:{
+			youlike:function(val){
+				this.youLike = val
 			}
 		}
 	}

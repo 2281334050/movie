@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="video-box">
-			<video class="video fixed" :poster="videoDetail.coverUri" :src="videoDetail.previewUri" controls :style="style"></video>
+			<video class="video fixed" :poster="videoDetail.coverUri" :src="videoDetail.videoUri?videoDetail.videoUri:videoDetail.previewUri" :autoplay="videoDetail.videoUri?false:true" controls :style="style"></video>
 		</view>
 		<view class="video-detail">
 			<view class="cu-bar text-gray">
@@ -32,7 +32,11 @@
 					</view>
 				</view>
 				<view v-if="!videoDetail.currentIsUnlock" class="action">
-					<button @tap="unLock" class="cu-btn line-yellow">立即加入观看</button>
+					<button @tap="unLock" class="cu-btn line-yellow">
+						<img src="../../static/diamond.png" alt="" style="width: 45upx;height: auto;ertical-align: middle;">
+						{{videoDetail.price}}
+						加入观看
+						</button>
 				</view>
 			</view>
 		</view>
@@ -276,8 +280,8 @@
 			unLock() {
 				uni.showModal({
 					title: '视频解锁',
-					content: '您将以1800钻石的价格解锁该视频，是否确认？',
-					success: function(res) {
+					content: `您将以${this.videoDetail.price}钻石的价格解锁该视频，是否确认？`,
+					success: (res)=> {
 						if (res.confirm) {
 							uni.showLoading()
 							USER_UNLOCKMEDIA({
@@ -287,6 +291,12 @@
 								uni.hideLoading()
 								if (res.status) {
 									this.videoDetail.currentIsUnlock = true
+									this.videoDetail.videoUri = res.data
+									uni.showToast({
+										title: '解锁成功',
+										mask: true,
+										icon: 'none'
+									})
 								} else {
 									uni.showToast({
 										title: res.msg,

@@ -20,7 +20,7 @@
 			<view class="action">
 				<text>vip精选</text>
 			</view>
-			<view class="action">
+			<view class="action" @tap="navTo('/pages/about/videoLists?type=5')">
 				<view class="cu-tag radius sm bg-yellow">更多</view>
 			</view>
 		</view>
