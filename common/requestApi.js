@@ -247,7 +247,7 @@ async function HOME_VIDEOS(){
 		hot:[],
 		featured:[]
 	}
-	await MEDIA_GETINDEXVIDEO({pageNo:1,type:0}).then(res=>{
+	await MEDIA_GETINDEXVIDEO({pageNo:1,type:5}).then(res=>{
 		if(res.status){
 			data.youlike = res.data
 		}

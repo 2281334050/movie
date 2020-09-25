@@ -140,7 +140,7 @@
 			},
 			changeYoulike(){
 				uni.showLoading()
-				MEDIA_GETINDEXVIDEO({pageNo:1,type:0}).then(res=>{
+				MEDIA_GETINDEXVIDEO({pageNo:1,type:5}).then(res=>{
 					uni.hideLoading()
 					if(res.status){
 						this.youLike = res.data
