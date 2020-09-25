@@ -17,4 +17,6 @@ export default {
 	USER_UNLOCKMEDIA: '/user/unlockMedia', //视频解锁
 	USER_FAVORITES: '/user/favorites', //视频收藏
 	USER_LIKE: '/user/like', //视频赞、踩
+	MESSAGE_GETMESSAGELIST: '/message/getMessageList', //获取消息列表
+	MESSAGE_GETMESSAGEDETAIL: '/message/getMessageDetail', //获取消息详情
 }

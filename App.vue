@@ -1,5 +1,6 @@
 <script>
 	import Vue from 'vue'
+	import Websocket from "@/common/websocket"
 	export default {
 		globalData: {
 			NavFlag: false, //跳转标记
@@ -32,7 +33,9 @@
 			})
 			if (uni.getStorageSync('token')) {
 				this.$store.dispatch('getUserInfo') //获取用户详情
+				Websocket.connect()
 			}
+			console.log(Websocket)
 		},
 		onShow: function() {
 			console.log('App Show');

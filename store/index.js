@@ -9,10 +9,14 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 	state: {
 		UserInfo: {},
+		websocketMsg:{}
 	},
 	mutations: {
 		setUserInfo(state, obj) {
 			state.UserInfo = obj
+		},
+		setMsg(state,obj){
+			state.websocketMsg = obj
 		}
 	},
 	actions: {

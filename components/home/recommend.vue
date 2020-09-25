@@ -1,14 +1,14 @@
 <template>
 	<view>
 		<!-- 推荐 -->
-<!-- 		<view class="cu-bar search xl">
+		<!-- 		<view class="cu-bar search xl">
 			<view class="search-form round">
 				<text class="cuIcon-search" style="font-size: 32upx"></text>
 				<input disabled type="text" @tap="navTo('search')" placeholder="输入搜索的关键词" confirm-type="search"></input>
 			</view>
 		</view> -->
 		<!-- links -->
-<!-- 		<view class="links cu-bar">
+		<!-- 		<view class="links cu-bar">
 			<view class="btn margin-left">高颜值</view>
 			<view class="btn">新主播</view>
 			<view class="btn">长视频</view>
@@ -38,7 +38,9 @@
 		</view>
 		<view class="padding-lr-sm videos flex flex-wrap">
 			<block v-for="(item,key) in youLike">
-				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs margin-top-xs" v-if="key<=3" :key="key"  :icon="[item.likes,item.views]" :cover="item.coverUri" :time="item.duration" :name="item.videoTitle" :author="item.publishAvatar"></videoItem>
+				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs margin-top-xs" v-if="key<=3"
+				 :key="key" :icon="[item.likes,item.views]" :cover="item.coverUri" :time="item.duration" :name="item.videoTitle"
+				 :author="item.publishAvatar"></videoItem>
 			</block>
 		</view>
 		<!-- 轮播 -->
@@ -55,7 +57,7 @@
 			 duration="500" style="height: 280upx;">
 				<swiper-item v-for="(item,index) in hot" :key="index" @tap="goDetail(item,0)">
 					<image :src="item.coverUri" mode="aspectFill"></image>
-<!-- 					<image :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
+					<!-- 					<image :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
 					<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video> -->
 				</swiper-item>
 			</swiper>
@@ -71,7 +73,9 @@
 		</view>
 		<view class="padding-lr-sm">
 			<scroll-view class="scroll-view_H videos" scroll-x="true" style="height: 330upx">
-				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs" style="display: inline-block;" v-for="(item,key) in featured" :key="key"  :icon="[item.likes,item.views]"  :cover="item.coverUri" :time="item.duration" :author="item.publishAvatar" :name="item.videoTitle"></videoItem>
+				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs" style="display: inline-block;"
+				 v-for="(item,key) in featured" :key="key" :icon="[item.likes,item.views]" :cover="item.coverUri" :time="item.duration"
+				 :author="item.publishAvatar" :name="item.videoTitle"></videoItem>
 			</scroll-view>
 		</view>
 		<!-- 新近主播 -->
@@ -79,13 +83,14 @@
 			<view class="action">
 				<text>新晋主播</text>
 			</view>
-			<view class="action">
+			<view class="action" @tap="navTo('/pages/discover/authorList?type=1')">
 				<view class="cu-tag radius sm bg-yellow">更多</view>
 			</view>
 		</view>
 		<view class="padding-lr-sm">
 			<scroll-view class="scroll-view_H anchors" scroll-x="true" style="height: 420upx">
-				<videoItem class="anchor-item radius margin-left-xs" style="display: inline-block;" v-for="item in anchors" :key="item.id" :cover="item.avatar" :name="item.nickname" @videoTap="goDetail(item,2)" @authorTap="goDetail(item,2)"></videoItem>
+				<videoItem class="anchor-item radius margin-left-xs" style="display: inline-block;" v-for="item in anchors" :key="item.id"
+				 :cover="item.avatar" :name="item.nickname" @videoTap="goDetail(item,2)" @authorTap="goDetail(item,2)"></videoItem>
 			</scroll-view>
 		</view>
 	</view>
@@ -100,62 +105,65 @@
 		components: {
 			videoItem
 		},
-		props:{
-			youlike:{
-				type:Array,
-				default:()=>[]
+		props: {
+			youlike: {
+				type: Array,
+				default: () => []
 			},
-			hot:{
-				type:Array,
-				default:()=>[]
+			hot: {
+				type: Array,
+				default: () => []
 			},
-			featured:{
-				type:Array,
-				default:()=>[]
+			featured: {
+				type: Array,
+				default: () => []
 			},
-			anchors:{
-				type:Array,
-				default:()=>[]
+			anchors: {
+				type: Array,
+				default: () => []
 			},
-			banner:{
-				type:Array,
-				default:()=>[]
+			banner: {
+				type: Array,
+				default: () => []
 			}
 		},
 		data() {
 			return {
-				youLike:[]
+				youLike: []
 			};
 		},
-		methods:{
-			goDetail(item,type){
-				console.log(item,type)
-				if(!type){//视频详情跳转
+		methods: {
+			goDetail(item, type) {
+				console.log(item, type)
+				if (!type) { //视频详情跳转
 					this.navTo(`/pages/home/videoDetail?id=${item.id}&uid=${item.publishId}`)
-				}else if(type === 1){//作者详情跳转
+				} else if (type === 1) { //作者详情跳转
 					this.navTo(`/pages/discover/anchorDetail?id=${item.publishId}`)
-				}else if(type === 2){//作者详情跳转
+				} else if (type === 2) { //作者详情跳转
 					this.navTo(`/pages/discover/anchorDetail?id=${item.id}`)
 				}
 			},
-			changeYoulike(){
+			changeYoulike() {
 				uni.showLoading()
-				MEDIA_GETINDEXVIDEO({pageNo:1,type:5}).then(res=>{
+				MEDIA_GETINDEXVIDEO({
+					pageNo: 1,
+					type: 5
+				}).then(res => {
 					uni.hideLoading()
-					if(res.status){
+					if (res.status) {
 						this.youLike = res.data
-					}else{
+					} else {
 						uni.showToast({
-							title:res.msg,
-							mask:true,
-							icon:'none'
+							title: res.msg,
+							mask: true,
+							icon: 'none'
 						})
 					}
 				})
 			}
 		},
-		watch:{
-			youlike:function(val){
+		watch: {
+			youlike: function(val) {
 				this.youLike = val
 			}
 		}

@@ -77,6 +77,17 @@
 			"navigationBarTitleText": "加载中..",
 			"enablePullDownRefresh": true
 		}
+	}, {
+		"path": "pages/discover/authorList",
+		"style": {
+			"navigationBarTitleText": "加载中..",
+			"enablePullDownRefresh": true
+		}
+	}, {
+		"path": "pages/messages/detail",
+		"style": {
+			"navigationBarTitleText": "加载中.."
+		}
 	}],
 	"tabBar": {
 		"color": "#4E586E",

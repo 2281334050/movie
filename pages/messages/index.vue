@@ -14,9 +14,9 @@
 		<!-- 系统 -->
 		<view v-if="TabCur === 0">
 			<view class="messages">
-				<view class="cu-list menu-avatar">
+				<view class="cu-list menu-avatar" v-for="item in list" :key="item.messageBatch" @tap="navTo('/pages/messages/detail?id='+item.messageBatch)">
 					<view class="cu-item">
-						<view class="cu-avatar round lg" style="background-image: url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81005.jpg);">
+						<view class="cu-avatar round lg" :style="`background-image: url(${item.toAvatar});`">
 
 						</view>
 						<view class="content">
@@ -24,12 +24,12 @@
 							</view>
 							<view class="text-gray text-sm flex">
 								<view class="text-cut">
-									接收到的最新消息，超出部分省略号显示站位站位
+									{{item.content}}
 								</view>
 							</view>
 						</view>
 						<view class="action">
-							<view class="text-gray text-xs">下午1:35</view>
+							<view class="text-gray text-xs">{{time(item.sendTime)}}</view>
 							<view class="cuIcon-notice_forbid_fill text-gray" style="visibility: hidden;"></view>
 						</view>
 					</view>
@@ -81,23 +81,49 @@
 </template>
 
 <script>
+	import {
+		MESSAGE_GETMESSAGELIST
+	} from "@/common/requestApi"
 	export default {
 		data() {
 			return {
-				TabCur: 1,
+				TabCur: 0,
 				Tabs: [{
 					label: '系统'
-				}, {
-					label: '聊天'
-				}]
+				}],
+				list: []
 			};
 		},
-		onLoad() {
+		beforeMount() {
 			this.checkPower(0) //传入参数，使登录后传回
 		},
+		onLoad() {
+			this.getData()
+		},
 		methods: {
+			time(str) {
+				let date = new Date(str)
+				return this.dateUtils.humanize(date.getTime())
+			},
 			tabSelect(e) {
 				this.TabCur = e.currentTarget.dataset.id * 1;
+			},
+			getData() {
+				uni.showLoading({
+					mask:true
+				})
+				MESSAGE_GETMESSAGELIST().then(res => {
+					uni.hideLoading()
+					if (res.status) {
+						this.list = res.data
+					} else {
+						uni.showToast({
+							title: res.msg,
+							mask: true,
+							icon: 'none'
+						})
+					}
+				})
 			}
 		},
 		computed: {

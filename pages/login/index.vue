@@ -36,9 +36,9 @@
 						<text class="cuIcon-lock"></text>
 					</view>
 					<input v-model="passWord" @input='passWordInput' placeholder="密码" :password="passWordEye" name="password"></input>
-										<text @click="passWordEye = !passWordEye" :class="[passWordEye?'cuIcon-attention':'cuIcon-attentionfill']"
+					<text @click="passWordEye = !passWordEye" :class="[passWordEye?'cuIcon-attention':'cuIcon-attentionfill']"
 					 confirm-type="done"></text>
-<!-- 					<image @click="passWordEye = !passWordEye" confirm-type="done" :src="passWordEye?'../../static/yankai.svg':'../../static/yanguan.svg'"
+					<!-- 					<image @click="passWordEye = !passWordEye" confirm-type="done" :src="passWordEye?'../../static/yankai.svg':'../../static/yanguan.svg'"
 					 mode='aspectFit' class='cu-avatar sm  icon'></image> -->
 				</view>
 				<view class="flex justify-between remember-pwd margin-top align-center padding-lr-sm">
@@ -61,6 +61,7 @@
 
 <script>
 	import cuCustom from '@/colorui/components/cu-custom.vue'
+	import WebSocket from "@/common/websocket"
 	import {
 		LOGIN
 	} from "@/common/requestApi.js"
@@ -155,8 +156,9 @@
 							icon: 'success',
 						})
 						//跳转的几种类型
-						 uni.setStorageSync('token', res.data)
-						 this.$store.dispatch('getUserInfo') //获取用户详情
+						uni.setStorageSync('token', res.data)
+						this.$store.dispatch('getUserInfo') //获取用户详情
+						WebSocket.connect() //链接
 						setTimeout(() => {
 							if (this.backPage) { //存在跳转地址
 								if (this.backType * 1) { //正常跳转

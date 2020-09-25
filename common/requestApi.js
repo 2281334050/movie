@@ -240,25 +240,62 @@ function USER_LIKE(params = {}) {
 		return data
 	})
 }
+// 获取消息列表
+function MESSAGE_GETMESSAGELIST(params = {}) {
+	return request(api_list.MESSAGE_GETMESSAGELIST, params, 'POST').then(res => {
+		var data = {}
+		if (res.code === 0) {
+			data.status = 1
+			data.data = res.data
+		} else {
+			data.status = 0
+			data.msg = res.msg
+		}
+		return data
+	})
+}
+// 获取消息详情
+function MESSAGE_GETMESSAGEDETAIL(params = {}) {
+	return request(api_list.MESSAGE_GETMESSAGEDETAIL, params, 'POST').then(res => {
+		var data = {}
+		if (res.code === 0) {
+			data.status = 1
+			data.data = res.data
+		} else {
+			data.status = 0
+			data.msg = res.msg
+		}
+		return data
+	})
+}
 //首页视频获取集合
-async function HOME_VIDEOS(){
+async function HOME_VIDEOS() {
 	let data = {
-		youlike:[],
-		hot:[],
-		featured:[]
+		youlike: [],
+		hot: [],
+		featured: []
 	}
-	await MEDIA_GETINDEXVIDEO({pageNo:1,type:5}).then(res=>{
-		if(res.status){
+	await MEDIA_GETINDEXVIDEO({
+		pageNo: 1,
+		type: 5
+	}).then(res => {
+		if (res.status) {
 			data.youlike = res.data
 		}
 	})
-	await MEDIA_GETINDEXVIDEO({pageNo:1,type:1}).then(res=>{
-		if(res.status){
+	await MEDIA_GETINDEXVIDEO({
+		pageNo: 1,
+		type: 1
+	}).then(res => {
+		if (res.status) {
 			data.hot = res.data
 		}
 	})
-	await MEDIA_GETINDEXVIDEO({pageNo:1,type:2}).then(res=>{
-		if(res.status){
+	await MEDIA_GETINDEXVIDEO({
+		pageNo: 1,
+		type: 2
+	}).then(res => {
+		if (res.status) {
 			data.featured = res.data
 		}
 	})
@@ -284,5 +321,7 @@ export {
 	USER_GETMEDIADETAIL,
 	USER_UNLOCKMEDIA,
 	USER_FAVORITES,
-	USER_LIKE
+	USER_LIKE,
+	MESSAGE_GETMESSAGELIST,
+	MESSAGE_GETMESSAGEDETAIL
 }

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 附近 -->
-		<view class="margin-lr margin-top-sm radius cu-bar" style="background-color: #303849;">
+		<view class="margin-lr margin-top-sm radius cu-bar" style="background-color: #303849;" @tap="navTo('/pages/discover/authorList?type=2')">
 			<view class="action">
 				<text class="cuIcon-locationfill"></text>
 				<text class="text-sm">四川省，成都市</text>
