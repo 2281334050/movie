@@ -120,6 +120,9 @@
 				]
 			}
 		},
+		beforeMount() {
+			this.checkPower(0) //传入参数，使登录后传回
+		},
 		methods:{
 			Golink1(url){
 				if(url){
@@ -133,9 +136,6 @@
 					return;
 				}
 			}
-		},
-		onLoad() {
-			this.checkPower(0) //传入参数，使登录后传回
 		}
 	}
 </script>
