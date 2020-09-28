@@ -40,12 +40,12 @@
 			<view class="left solid-right flex align-center">
 				<img src="../../static/diamond.png" class="margin-left padding-left" alt="">
 				<view class="text-center margin-left">
-					<view class="text-xxl text-bold">{{$store.state.UserInfo.balance?$store.state.UserInfo.balance:0}}</view>
+					<view class="text-xxl text-bold">2000</view>
 					<view class="text-bold">钻石余额</view>
 				</view>
 			</view>
 			<view class="right flex align-center justify-center">
-				<text class="text-bold text-xl">我要充值</text>
+				<text class="text-bold text-xl"  @tap="navTo('/pages/about/topUp')">我要充值</text>
 				<text class="cuIcon-right margin-left-sm" style="font-size: 1.2em;"></text>
 			</view>
 		</view>
@@ -120,12 +120,9 @@
 				]
 			}
 		},
-		beforeMount() {
-			this.checkPower(0) //传入参数，使登录后传回
-		},
 		methods:{
 			Golink1(url){
-				if(url){
+				if(url){				
 					this.navTo(url)
 				}else{
 					uni.showToast({
@@ -136,6 +133,9 @@
 					return;
 				}
 			}
+		},
+		onLoad() {
+			this.checkPower(0) //传入参数，使登录后传回
 		}
 	}
 </script>

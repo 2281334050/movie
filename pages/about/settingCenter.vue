@@ -2,7 +2,7 @@
 	<view>
 		<view class="cu-list menu sm-border">
 			<view class="cu-item arrow">
-				<view class="content padding-tb-sm">
+				<view class="content padding-tb-sm" @tap="navTo('/pages/about/personal')">
 					<text class="text-white text-lg text-bold">个人资料</text>
 				</view>
 			</view>

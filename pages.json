@@ -71,7 +71,25 @@
 		"style": {
 			"navigationBarTitleText": "设置中心"
 		}
-	}, {
+	}
+	, {
+		"path": "pages/about/personal",
+		"style": {
+			"navigationBarTitleText": "资料编辑"
+		}
+	, {
+		"path": "pages/about/changeDetail",
+		"style": {
+			"navigationBarTitleText": ""
+		}
+	}
+	, {
+		"path": "pages/about/topUp",
+		"style": {
+			"navigationBarTitleText": "充值中心"
+		}
+	}
+	, {
 		"path": "pages/about/videoLists",
 		"style": {
 			"navigationBarTitleText": "加载中..",
