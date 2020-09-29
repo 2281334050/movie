@@ -1,112 +1,115 @@
 {
 	"pages": [{
-		"path": "pages/home/index",
-		"style": {
-			"navigationStyle": "custom" //取消导航栏
+			"path": "pages/home/index",
+			"style": {
+				"navigationStyle": "custom" //取消导航栏
+			}
+		}, {
+			"path": "pages/home/search",
+			"style": {
+				"navigationStyle": "custom" //取消导航栏
+			}
+		}, {
+			"path": "pages/discover/index",
+			"style": {
+				"navigationBarTitleText": "发现",
+				"enablePullDownRefresh": true
+			}
+		}, {
+			"path": "pages/messages/index",
+			"style": {
+				"navigationBarTitleText": "消息"
+			}
+		}, {
+			"path": "pages/about/index",
+			"style": {
+				"navigationStyle": "custom" //取消导航栏
+			}
+		}, {
+			"path": "pages/messages/chat",
+			"style": {
+				"navigationBarTitleText": "@"
+			}
+		}, {
+			"path": "pages/messages/list",
+			"style": {
+				"navigationBarTitleText": "列表"
+			}
+		}, {
+			"path": "pages/discover/anchorDetail",
+			"style": {
+				"transparentTitle": "auto"
+			}
+		}, {
+			"path": "pages/about/creationCenter",
+			"style": {
+				"navigationBarTitleText": "创作中心"
+			}
+		}, {
+			"path": "pages/home/videoDetail",
+			"style": {
+				"navigationBarTitleText": "加载中..",
+				"enablePullDownRefresh": true
+			}
+		}, {
+			"path": "pages/login/index",
+			"style": {
+				"navigationStyle": "custom" //取消导航栏
+			}
+		}, {
+			"path": "pages/login/register",
+			"style": {
+				"navigationStyle": "custom" //取消导航栏
+			}
+		}, {
+			"path": "pages/login/forget",
+			"style": {
+				"navigationStyle": "custom" //取消导航栏
+			}
+		}, {
+			"path": "pages/about/settingCenter",
+			"style": {
+				"navigationBarTitleText": "设置中心"
+			}
+		}, {
+			"path": "pages/about/personal",
+			"style": {
+				"navigationBarTitleText": "资料编辑"
+			}
+		},
+		{
+			"path": "pages/about/changeDetail",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/about/topUp",
+			"style": {
+				"navigationBarTitleText": "充值中心"
+			}
+		},
+		{
+			"path": "pages/about/videoLists",
+			"style": {
+				"navigationBarTitleText": "加载中..",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/discover/authorList",
+			"style": {
+				"navigationBarTitleText": "加载中..",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/messages/detail",
+			"style": {
+				"navigationBarTitleText": "加载中.."
+			}
 		}
-	}, {
-		"path": "pages/home/search",
-		"style": {
-			"navigationStyle": "custom" //取消导航栏
-		}
-	}, {
-		"path": "pages/discover/index",
-		"style": {
-			"navigationBarTitleText": "发现",
-			"enablePullDownRefresh": true
-		}
-	}, {
-		"path": "pages/messages/index",
-		"style": {
-			"navigationBarTitleText": "消息"
-		}
-	}, {
-		"path": "pages/about/index",
-		"style": {
-			"navigationStyle": "custom" //取消导航栏
-		}
-	}, {
-		"path": "pages/messages/chat",
-		"style": {
-			"navigationBarTitleText": "@"
-		}
-	}, {
-		"path": "pages/messages/list",
-		"style": {
-			"navigationBarTitleText": "列表"
-		}
-	}, {
-		"path": "pages/discover/anchorDetail",
-		"style": {
-			"transparentTitle": "auto"
-		}
-	}, {
-		"path": "pages/about/creationCenter",
-		"style": {
-			"navigationBarTitleText": "创作中心"
-		}
-	}, {
-		"path": "pages/home/videoDetail",
-		"style": {
-			"navigationBarTitleText": "加载中..",
-			"enablePullDownRefresh": true
-		}
-	}, {
-		"path": "pages/login/index",
-		"style": {
-			"navigationStyle": "custom" //取消导航栏
-		}
-	}, {
-		"path": "pages/login/register",
-		"style": {
-			"navigationStyle": "custom" //取消导航栏
-		}
-	}, {
-		"path": "pages/login/forget",
-		"style": {
-			"navigationStyle": "custom" //取消导航栏
-		}
-	}, {
-		"path": "pages/about/settingCenter",
-		"style": {
-			"navigationBarTitleText": "设置中心"
-		}
-	}
-	, {
-		"path": "pages/about/personal",
-		"style": {
-			"navigationBarTitleText": "资料编辑"
-		}
-	, {
-		"path": "pages/about/changeDetail",
-		"style": {
-			"navigationBarTitleText": ""
-		}
-	}
-	, {
-		"path": "pages/about/topUp",
-		"style": {
-			"navigationBarTitleText": "充值中心"
-		}
-	}
-	, {
-		"path": "pages/about/videoLists",
-		"style": {
-			"navigationBarTitleText": "加载中..",
-			"enablePullDownRefresh": true
-		}
-	}, {
-		"path": "pages/discover/authorList",
-		"style": {
-			"navigationBarTitleText": "加载中..",
-			"enablePullDownRefresh": true
-		}
-	}, {
-		"path": "pages/messages/detail",
-		"style": {
-			"navigationBarTitleText": "加载中.."
-		}
-	}],
+	],
 	"tabBar": {
 		"color": "#4E586E",
 		"selectedColor": "#fff",
