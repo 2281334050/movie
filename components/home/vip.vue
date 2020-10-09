@@ -1,29 +1,29 @@
 <template>
 	<view>
 		<!-- vip精选 -->
-		<view class="top-banner">
+<!-- 		<view class="top-banner">
 			<view class="bg-mask bg-img">
 				<swiper class="screen-swiper" :circular="true" :autoplay="true" interval="5000" duration="500" style="height: 450upx;">
 					<swiper-item v-for="(item,index) in banner" :key="index">
 						<image :src="item.image" mode="aspectFill" ></image>
-						<!-- <video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video> -->
+						<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
 					</swiper-item>
 				</swiper>
 			</view>
-			<!-- vip面板 -->
+
 			<view class="vip-detail radius margin-lr">
 				
 			</view>
-		</view>
+		</view> -->
 		<!-- vip精选 -->
-		<view class="cu-bar">
+<!-- 		<view class="cu-bar">
 			<view class="action">
 				<text>vip精选</text>
 			</view>
 			<view class="action" @tap="navTo('/pages/about/videoLists?type=5')">
 				<view class="cu-tag radius sm bg-yellow">更多</view>
 			</view>
-		</view>
+		</view> -->
 		<view class="padding-lr-sm videos flex flex-wrap">
 			<block v-for="(item,key) in videos">
 				<videoItem @videoTap="goDetail(item,0)" @authorTap="goDetail(item,1)" class="margin-left-xs margin-top-xs" :key="key"  :icon="[66,item.views]" :cover="item.coverUri" :time="60000" :name="item.videoTitle"></videoItem>
@@ -50,35 +50,7 @@
 		},
 		data() {
 			return {
-				swiperList: [{
-					id: 0,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-				}, {
-					id: 1,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg',
-				}, {
-					id: 2,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-				}, {
-					id: 3,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-				}, {
-					id: 4,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-				}, {
-					id: 5,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-				}, {
-					id: 6,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-				}]
+
 			};
 		},
 		methods:{

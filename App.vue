@@ -42,6 +42,15 @@
 		},
 		onHide: function() {
 			console.log('App Hide');
+		},
+		watch: {
+			"$store.state.websocketMsg": function(val) {
+				if (val.code === 0) {
+					uni.showTabBarRedDot({
+						index: 2
+					})
+				}
+			}
 		}
 	};
 </script>
@@ -51,11 +60,13 @@
 	/*每个页面公共css */
 	@import "colorui/main.css";
 	@import "colorui/icon.css";
+
 	/* #endif */
 	/* #ifdef H5 */
-	.uni-picker-container{
+	.uni-picker-container {
 		z-index: 1026;
 	}
+
 	/* #endif */
 	/* 解决头条小程序组件内引入字体不生效的问题 */
 	/* #ifdef MP-TOUTIAO */

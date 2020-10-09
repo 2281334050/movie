@@ -89,6 +89,7 @@
 
 <script>
 	import cuCustom from '@/colorui/components/cu-custom.vue'
+	import WebSocket from "@/common/websocket"
 	import {
 		REGISTER,
 	} from "@/common/requestApi"
@@ -241,6 +242,7 @@
 							title: '注册成功',
 							success: () => {
 								uni.setStorageSync('token', res.data)
+								WebSocket.connect() //链接
 								this.$store.dispatch('getUserInfo') //获取用户详情
 								uni.switchTab({
 									url: '/pages/home/index'

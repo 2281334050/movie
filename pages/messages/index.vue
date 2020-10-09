@@ -97,7 +97,7 @@
 		beforeMount() {
 			this.checkPower(0) //传入参数，使登录后传回
 		},
-		onLoad() {
+		onShow(){
 			this.getData()
 		},
 		methods: {
@@ -116,6 +116,9 @@
 					uni.hideLoading()
 					if (res.status) {
 						this.list = res.data
+						uni.hideTabBarRedDot({
+							index:2
+						})
 					} else {
 						uni.showToast({
 							title: res.msg,
